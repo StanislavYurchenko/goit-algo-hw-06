@@ -25,13 +25,18 @@ if __name__ == "__main__":
 
     # Find and edit John's phone number
     john = book.find("John")
-    john.edit_phone("1234567890", "1112223333")
 
-    print(john)  # Print: Contact name: John, phones: 1112223333; 5555555555
+    if john:
+        john.edit_phone("1234567890", "1112223333")
 
-    # Find a specific phone number in John's record
-    found_phone = john.find_phone("5555555555")
-    print(f"{john.name}: {found_phone}")  # Print: John: 5555555555
+        print(john)  # Print: Contact name: John, phones: 1112223333; 5555555555
+
+        # Find a specific phone number in John's record
+        found_phone = john.find_phone("5555555555")
+        print(f"{john.name}: {found_phone}")  # Print: John: 5555555555
 
     # Delete Jane's record
     book.delete("Jane")
+
+    # Print all records after deletion
+    print(book)  # Print: Contact name: John, phones: 1112223333; 5555555555 

@@ -17,9 +17,12 @@ class Record:
         self.phones = [ph for ph in self.phones if ph.value != phone]
 
     def edit_phone(self, old_phone: str, new_phone: str) -> None:
-        phone_to_edit = self.find_phone(old_phone)
-        if phone_to_edit:
-            phone_to_edit.value = new_phone
+        for i, ph in enumerate(self.phones):
+            if ph.value == old_phone:
+                self.phones[i] = Phone(new_phone)
+                return
+        else:
+            raise ValueError(f"Phone number {old_phone} not found in record for {self.name.value}") 
 
     def find_phone(self, phone: str) -> Phone | None:
         return next((ph for ph in self.phones if ph.value == phone), None)
